@@ -4,12 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:web": "pnpm -F website dev",
+    "dev:server:main": "pnpm -F server start:dev main",
+    "dev": "npm-run-all --parallel dev:web dev:server:main",
+    "build:web": "pnpm -F website build",
+    "start:web": "pnpm build:web && pnpm -F website start",
+    "start": "pnpm start:web"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "clsx": "^2.1.0"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }

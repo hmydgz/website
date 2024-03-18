@@ -1,0 +1,18 @@
+.bg {
+  border-bottom: 1px solid;
+  border-color: transparent;
+  :local {
+    animation: border-color;
+    animation-timeline: scroll();
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes border-color {
+  0% {
+    border-color: transparent;
+  }
+  30%, 100% {
+    border-color: rgb(75, 85, 99, 0.6);
+  }
+}

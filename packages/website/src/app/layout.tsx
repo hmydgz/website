@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 import "./globals.css";
-import { Root } from "@/components/layout/root/Root";
+import { Header } from "@/components/layout/header";
+import { Content } from "@/components/layout/content";
+import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
   title: "hmydgz",
@@ -16,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="relative z-0 min-h-screen">
-        <Root>{ children }</Root>
+        <Header />
+        <Content>{ children }</Content>
+        <Footer />
       </body>
     </html>
   );

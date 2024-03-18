@@ -1,6 +1,6 @@
 export const Content: FCC = ({ children }) => {
   return (
-    <main className="relative z-[1]">
+    <main className="relative">
       {children}
     </main>
   )

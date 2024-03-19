@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 
 export default function Home() {
   return (
-    <div className="px-5">
-      <div className="flex items-center justify-center py-10" style={{ minHeight: "max(calc(100vh - calc(var(--header-height, 64px) * 2)), 600px)" }}>
+    <div className="">
+      <div className="flex items-center justify-center py-10" style={{ minHeight: "max(calc(100vh - calc(var(--header-height, 64px) * 2)), 500px)" }}>
         <div className='flex'>{ 'test'.split('').map((v, i) => (
           <motion.div
             key={ i }

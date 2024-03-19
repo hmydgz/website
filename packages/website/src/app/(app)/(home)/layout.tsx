@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-// import { Inter } from "next/font/google";
-import "./globals.css";
+// import "../../globals.css";
 import { Header } from "@/components/layout/header";
 import { Content } from "@/components/layout/content";
 import { Footer } from "@/components/layout/footer";
@@ -16,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="zh">
       <body className="relative z-0 min-h-screen">
         <Header />
         <Content>{ children }</Content>

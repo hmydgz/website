@@ -5,7 +5,9 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 214, 219, 220;
-  /* --background-rgb: 255, 255, 255; */
+  --header-border-rgb: 75, 85, 99;
+  --header-border-opacity: 0.6;
+  --header-border-color: rgba(var(--header-border-rgb), var(--header-border-opacity));
 }
 
 @media (prefers-color-scheme: dark) {

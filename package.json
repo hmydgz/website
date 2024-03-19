@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:web": "pnpm -F website dev -p 3001",
+    "dev:web": "pnpm -F website dev",
     "dev:server:main": "pnpm -F server start:dev main",
     "dev:server:admin": "pnpm -F server start:dev admin",
     "dev:s:m": "pnpm dev:server:main",

@@ -1,0 +1,5 @@
+export { GitHubBrandIcon } from './GitHubBrandIcon'
+export { GoogleBrandIcon } from './GoogleBrandIcon'
+export { MicrosoftIcon } from './MicrosoftIcon'
+export { AppleIcon } from './AppleIcon'
+import { UserArrowLeft } from './UserArrowLeft'

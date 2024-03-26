@@ -7,6 +7,7 @@ import { UserAuth } from "./internal/UserAuth";
 
 export const Header: FC = () => {
   return (<ErrorBoundary>
+    {/* @ts-expect-error */}
     <HeaderCtx />
   </ErrorBoundary>)
 }
@@ -20,15 +21,19 @@ const HeaderWrapper: FCC = ({ children }) => {
   )
 }
 
-const HeaderCtx: FC = () => {
+async function getAvatar() {
+  const res = await fetch(`https://api.github.com/users/${process.env.GITHUB_USERNAME}`, { cache: 'force-cache' })
+  const { avatar_url } = await res.json()
+  return avatar_url
+}
+
+const HeaderCtx = async () => {
+  const avatarUrl = await getAvatar()
   return <header className="sticky top-0 left-0 w-full z-[2]">
     <HeaderWrapper>
-      <div className="flex items-center py-3 px-5">
-        <Image src={'https://avatars.githubusercontent.com/u/56059675?v=4'} height={40} width={40} alt="" className="rounded-full" />
-        <div className="flex-1"></div>
-        <div>
-          <UserAuth />
-        </div>
+      <div className="flex items-center justify-between py-3 px-5">
+        <Image src={avatarUrl} height={40} width={40} alt="" className="rounded-full" />
+        <UserAuth />
       </div>
     </HeaderWrapper>
   </header>

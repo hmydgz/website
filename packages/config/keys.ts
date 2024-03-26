@@ -1,0 +1,1 @@
+export const WEBSITE_COOKIE_TOKEN_KEY = '_token';

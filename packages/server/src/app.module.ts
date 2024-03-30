@@ -7,6 +7,8 @@ import { GlobalService } from './modules/global/global.service';
 import { GlobalController } from './modules/global/global.controller';
 import { GlobalModule } from './modules/global/global.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { ResInterceptor } from './common/interceptor/res.interceptor';
 
 @Module({
   imports: [
@@ -20,6 +22,10 @@ import { AuthModule } from './modules/auth/auth.module';
     AuthModule,
   ],
   controllers: [AppController, GlobalController],
-  providers: [AppService, GlobalService],
+  providers: [
+    AppService,
+    GlobalService,
+    { provide: APP_INTERCEPTOR, useClass: ResInterceptor }
+  ],
 })
 export class AppModule {}

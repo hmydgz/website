@@ -8,8 +8,7 @@ import { http } from "@/common/http";
 
 
 async function createToken(userId: string) {
-  const { token } = await http.post<{ token: string }>('http://127.0.0.1:3105/api/auth/token', { body: JSON.stringify({ userId }) })
-  console.log({ token })
+  const { token } = await http.post<{ token: string }>('/api/auth/token', { body: JSON.stringify({ userId }) })
   return token
 }
 
@@ -32,6 +31,10 @@ export function SetCookieToken() {
 }
 
 export function ClearCookieToken() {
-  useEffect(() => { Cookies.remove(WEBSITE_COOKIE_TOKEN_KEY) }, [])
+  useEffect(() => {
+    if (!Cookies.get('__session')) {
+      Cookies.remove(WEBSITE_COOKIE_TOKEN_KEY)
+    }
+  }, [])
   return (<></>);
 }

@@ -9,6 +9,8 @@ import { GlobalModule } from './modules/global/global.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ResInterceptor } from './common/interceptor/res.interceptor';
+import { DbModule } from '@app/db';
+import { Project } from '@app/db/schemas';
 
 @Module({
   imports: [
@@ -17,15 +19,19 @@ import { ResInterceptor } from './common/interceptor/res.interceptor';
       cache: true,
       envFilePath: '.env.local',
     }),
+    DbModule.forRoot('MONGODB_URI', { dbName: 'website' }),
+    DbModule.forFeature([
+      Project,
+    ]),
+    AuthModule,
     AdminModule,
     GlobalModule,
-    AuthModule,
   ],
   controllers: [AppController, GlobalController],
   providers: [
     AppService,
     GlobalService,
-    { provide: APP_INTERCEPTOR, useClass: ResInterceptor }
+    { provide: APP_INTERCEPTOR, useClass: ResInterceptor },
   ],
 })
 export class AppModule {}

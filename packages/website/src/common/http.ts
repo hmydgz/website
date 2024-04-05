@@ -2,7 +2,10 @@ const BASE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3105
 
 const methods = ['get', 'post', 'put', 'delete'] as const
 type Method = typeof methods[number]
-type Fetch = <T = Response>(url: string, options?: Omit<RequestInit, 'body'> & { params?: Record<string | number, any>, body?: any }) => Promise<T>
+type Fetch = <T = any>(
+  url: string,
+  options?: Omit<RequestInit, 'body'> & { params?: Record<string | number, any>, body?: any }
+) => Promise<T>
 
 export const http = new Proxy({} as Record<Method, Fetch>, {
   get(target, p) {
@@ -28,7 +31,13 @@ export const http = new Proxy({} as Record<Method, Fetch>, {
         })
 
         if (!res.ok) return Promise.reject(res)
-        return await res.json()
+        let _res: any = ''
+        try {
+          _res = await res.json()
+        } catch (error) {
+          _res = await res.text()
+        }
+        return _res.data ?? _res
       } catch (error) {
         return Promise.reject(error)
       }

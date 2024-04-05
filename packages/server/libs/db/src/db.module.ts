@@ -11,7 +11,12 @@ export class DbModule {
       {
         provide: 'DB_CONNECT',
         inject: [ConfigService],
-        useFactory: (config: ConfigService) => mongoose.connect(config.get<string>(envKey, 'MONGODB_URI'), options),
+        useFactory: (config: ConfigService) => {
+          const url = config.get<string>(envKey, 'MONGODB_URI')
+          console.log('DB_CONNECT', url)
+          console.log(config.get('NODE_ENV'));
+          return mongoose.connect(url, options)
+        },
       },
     ]
 

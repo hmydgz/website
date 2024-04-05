@@ -5,11 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev:web": "pnpm -F website dev",
-    "dev:server:main": "pnpm -F server start:dev main",
-    "dev:server:admin": "pnpm -F server start:dev admin",
-    "dev:s:m": "pnpm dev:server:main",
-    "dev:s:a": "pnpm dev:server:admin",
-    "dev": "npm-run-all --parallel dev:web dev:server:main",
+    "dev:server": "pnpm -F server dev",
+    "dev": "npm-run-all --parallel dev:web dev:server",
     "build:web": "pnpm -F website build",
     "start:web": "pnpm build:web && pnpm -F website start",
     "start": "pnpm start:web"

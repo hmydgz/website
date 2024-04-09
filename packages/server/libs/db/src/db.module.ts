@@ -14,7 +14,7 @@ export class DbModule {
         useFactory: (config: ConfigService) => {
           const url = config.get<string>(envKey, 'MONGODB_URI')
           console.log('DB_CONNECT', url)
-          console.log(config.get('NODE_ENV'));
+          console.log(process.env.NODE_ENV);
           return mongoose.connect(url, options)
         },
       },

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev:web": "pnpm -F website dev",
-    "dev:server": "pnpm -F server dev",
+    "dev:server": "cross-env NODE_ENV=development pnpm -F server dev",
     "dev": "npm-run-all --parallel dev:web dev:server",
     "build:web": "pnpm -F website build",
     "start:web": "pnpm build:web && pnpm -F website start",
@@ -15,9 +15,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@common/config": "workspace:*",
     "clsx": "^2.1.0",
-    "dotenv": "^16.4.5",
-    "@common/config": "workspace:*"
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",

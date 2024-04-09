@@ -1,34 +1,39 @@
 version: '3'
 
 networks:
-  db-network:
+  base:
     driver: bridge
 
 services:
   db:
     image: mongo
     networks:
-      - db-network
+      - base
     container_name: mongodb
     volumes:
-      - /mnt/d/env/docker/volumes/mongodb:/data/db
-    ports:
-      - "27017:27017"
+      - ${MONGODB_DATA_PATH}:/data/db
 
   website:
     build: ./packages/website
-    ports:
-      - "3000:3000"
+    container_name: website-web
     networks:
-      - db-network
+      - base
     depends_on:
       - server
 
   server:
     build: ./packages/server
-    ports:
-      - "3105:3105"
+    container_name: website-server
+    # secrets:
+    #   - website-server
     networks:
-      - db-network
+      - base
     depends_on:
       - db
+
+  nginx:
+    build: ./packages/nginx
+    ports:
+      - "80:80"
+    networks:
+      - base

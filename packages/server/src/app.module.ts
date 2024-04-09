@@ -17,7 +17,7 @@ import { Project } from '@app/db/schemas';
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      envFilePath: '.env.local',
+      envFilePath: [process.env.NODE_ENV === 'development' ? '.env.development' : '.env.production', '.env'],
     }),
     DbModule.forRoot('MONGODB_URI', { dbName: 'website' }),
     DbModule.forFeature([
